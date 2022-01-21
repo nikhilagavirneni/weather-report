@@ -1,7 +1,7 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-8 offset-2">
         <div>
           <div class="card">
             <div class="card-header text-center">
@@ -25,8 +25,9 @@
                       <li class="list-group-item" *ngIf="i !== 0 && i < 6">
                         {{ item.dt_txt | date: "EEEE, MMM d" }}:
                         {{ item.weather[0].main }}
-                        - Min: {{ item.temp.min - 273.15 | number: "1.0-0" }}℃ -
-                        Max: {{ item.temp.max - 273.15 | number: "1.0-0" }}℃
+                        - Min:
+                        {{ item.temp.min - 273.15 | number: "1.0-0" }}℃ - Max:
+                        {{ item.temp.max - 273.15 | number: "1.0-0" }}℃
                         <img
                           class="icon"
                           *ngIf="item.weather[0].main !== 'Clear'"

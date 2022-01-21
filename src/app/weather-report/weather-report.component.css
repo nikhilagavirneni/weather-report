@@ -17,7 +17,7 @@ fieldset .weather-img {
 fieldset .close {
   position: absolute;
   right: 0px;
-  background: rgb(255 0 0 / 38%);
+  background: #dc3545;
   width: 30px;
   height: 30px;
   top: 0;
@@ -28,7 +28,7 @@ fieldset .close {
 
 .hr-style {
   height: 1px;
-  margin-top: 25px;
+  margin-top: 30px;
   border: 2px solid #020202;
 }
 
@@ -42,4 +42,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+.forecast {
+  color: #212529;
+}
+.forecast:hover {
+  color: #3d81e6;
 }

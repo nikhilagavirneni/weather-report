@@ -5,22 +5,20 @@
         <div>
           <div class="card">
             <div class="card-header text-center">
-              <h4 class="text-center"><b>5-day forecast details</b></h4>
+              <h4 class="text-center"><b>5-day(s) forecast Report</b></h4>
             </div>
             <div class="card-body">
               <fieldset class="pb-3">
                 <legend>
-                  <b>{{ forCastDataForZip?.city?.name }}</b>
+                  <b>{{ forecastData?.city?.name }}</b>
                 </legend>
                 <div class="mt-4">
                   <ul
                     class="list-group"
-                    *ngIf="
-                      forCastDataForZip && forCastDataForZip.list.length > 0
-                    "
+                    *ngIf="forecastData && forecastData.list.length > 0"
                   >
                     <ng-container
-                      *ngFor="let item of forCastDataForZip.list; let i = index"
+                      *ngFor="let item of forecastData.list; let i = index"
                     >
                       <li class="list-group-item" *ngIf="i !== 0 && i < 6">
                         {{ item.dt_txt | date: "EEEE, MMM d" }}:

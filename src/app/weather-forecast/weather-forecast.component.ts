@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../weather.service';
+import { ForecastWeather } from '../weatherModel';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -9,8 +10,7 @@ import { WeatherService } from '../weather.service';
 })
 export class WeatherForecastComponent implements OnInit {
   zipCode!: string;
-  forCastDataForZip: any;
-  filteredForeCastList = [];
+  forecastData!: ForecastWeather;
   constructor(
     private activatedroute: ActivatedRoute,
     private weatherService: WeatherService
@@ -21,18 +21,13 @@ export class WeatherForecastComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.weatherService
-      .getForeCastWeather(this.zipCode)
-      .subscribe((data: any) => {
-        if (data) {
-          this.forCastDataForZip = data;
-          this.forCastDataForZip.list.forEach((data: any, i: number) => {
-            this.forCastDataForZip.list[i] = {
-              ...this.forCastDataForZip.list[i],
-              dt_txt: new Date(data.dt * 1000),
-            };
-          });
-        }
-      });
+    this.weatherService.getForeCastWeather(this.zipCode).subscribe((data) => {
+      if (data) {
+        this.forecastData = data;
+        this.forecastData.list.forEach((data, i: number) => {
+          this.forecastData.list[i].dt_txt = new Date(data.dt * 1000);
+        });
+      }
+    });
   }
 }

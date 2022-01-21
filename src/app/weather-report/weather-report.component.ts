@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { CurrentWeather } from '../weatherModel';
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./weather-report.component.css'],
 })
 export class WeatherReportComponent implements OnInit {
-  currentWeatherData: any = new Array();
-  zipCode: any;
+  currentWeatherData!: CurrentWeather[];
+  zipCode!: string;
   constructor(
     private weatherService: WeatherService,
     private toastr: ToastrService
@@ -34,9 +35,9 @@ export class WeatherReportComponent implements OnInit {
       });
       if (!ifExists) {
         this.weatherService.getWeatherByZip(zipCode).subscribe(
-          (data: any) => {
+          (data) => {
             if (data) {
-              data = { ...data, zipcode: zipCode };
+              data.zipcode = zipCode;
               this.currentWeatherData.push(data);
               localStorage.setItem(
                 'currentWeatherReport',

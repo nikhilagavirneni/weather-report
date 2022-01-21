@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as AppConst from '../app/app.consts';
+import { CurrentWeather, ForecastWeather } from './weatherModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
   constructor(private httpClient: HttpClient) {}
-  get() {}
   getWeatherByZip(zipCode: string) {
-    return this.httpClient.get(
+    return this.httpClient.get<CurrentWeather>(
       AppConst.apiUrl +
         'weather?zip=' +
         zipCode +
@@ -21,7 +21,7 @@ export class WeatherService {
   }
 
   getForeCastWeather(zipCode: string) {
-    return this.httpClient.get(
+    return this.httpClient.get<ForecastWeather>(
       AppConst.apiUrl +
         'forecast/daily?zip=' +
         zipCode +
